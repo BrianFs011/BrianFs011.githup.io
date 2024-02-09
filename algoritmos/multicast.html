@@ -24,7 +24,7 @@
             <div class="container-header">
                 <!-- <div class="page-title">
                 </div> -->
-                <div><a href="../site.html" class="btn btn-outline btn-rounded btn-light">Home</a></div>
+                <div><a href="../index.html" class="btn btn-outline btn-rounded btn-light">Home</a></div>
                 <div><a href="multicast.html" class="btn btn-outline btn-rounded btn-light">Multicast</a></div>
             </div>
         </section>
@@ -35,11 +35,11 @@
                     <h1>Introdução</h1>
                     <h3>O que é o <i>multicast</i> na computação distribuída?</h3>
                     <p>O termo <i>multicast</i> significa difusão seletiva. Por exemplo, no caso de uma rádio, estamos ouvindo uma sequência de mensagens que são transmitidas de um único ponto de origem, mas que todas as pessoas sintonizadas naquela frequência receberão aquela mensagem (áudio). Na computação distribuída, podemos fazer essa analogia quando definimos o termo <i>multicast</i>. É uma operação que permite o envio de uma única mensagem para um conjunto de processos que fazem parte de um <b>grupo</b>, ou seja, todos os processos do grupo receberão o dado vindo daquela mensagem. O processo origem não conhece o endereço dos processos destinos.</p>
-                    
-                    
+
+
 
                     <p>Para apresentar os algoritmos, considera-se um conjunto de n processos P<sub>i</sub>, com 0 <= i < n, que se comunicam por troca de mensagems em canais confiáveis. Processos podem sofrer de falhas por colapso (crash). Para a comunicação por <i>multicast</i>, processos participam de um grupo g e somente processos deste grupo são destinos de multicast. Por simplicidadae, será restringido que os processos fazem parte de, no máximo, um grupo por vez.</p>
-                    
+
                     <p>Respeitando Coulouris et. al. (2013), a operação <em>multicast(g, m)</em> envia a mensagem m para todos os membros (processos) do grupo g. A operação <em>deliver(m)</em> consiste em entregar (distribuir) uma mensagem recebida por <i>multicast</i> para o processo que a executa. O termo entregar é usado para indicar que a mensagem nem sempre é passada para a camada de aplicação, ao chegar no processo.</p>
                     <p>Para os algoritmos de <i>multicast</i>, consideram-se as seguintes propriedades:</p>
                     <ul>
@@ -61,11 +61,11 @@
                                 B-deliver(m) em P;
                         </code>
                     </pre>
-                    
+
                     <p>A simulção abaixo demonstra o funcionamento do algortimo de multicast básico. O usuário pode interagir clicando no botão <button class="btn btn-light btn-xs" type="button">Iniciar</button> e acompanhar passo a passo de sua execução clicando no botão <button class="btn btn-light btn-xs" type="button">Avançar</button>. Os processos são representados pelo <button class="btn btn-light btn-xs" type="button" onmouseover="showProcess()" onmouseout="unshowProcess()"><span style="color: orange;">Circulo Laranja</span></button> e a mensagem é representada pelo <button class="btn btn-light btn-xs" type="button" onmouseover="showToken()" onmouseout="unshowToken()">Circulo Branco</button>. Já o <button class="btn btn-light btn-xs" type="button">Quadrado</button> ao lado dos processos, representa o status da mensagem, <button class="btn btn-light btn-xs" type="button"><span style="color: blue;">Azul</span></button> para <b><em>mensagem entregue</em> e <button class="btn btn-light btn-xs" type="button"><span style="color: red;">Vermelho</span></button> para falha</b>. Além disso, o usuário pode selecionar um processo e clicar no botão <button class="btn btn-light btn-xs" type="button">Mudar Processo</button></p>
-                    
+
                     <div>
-                        
+
                         <!-- Começa aqui-->
                         <div class="algSection">
                             <div class="algContent">
@@ -73,17 +73,17 @@
                                     <div id="buttonsR2">
                                         <button onclick="playAlg()" type="button" class="btn btn-rounded btn-light btn-sm">Iniciar</button>
                                     </div>
-                                    
-                                    
+
+
                                 </div>
-                                
+
                                 <div class="alg" id="mbsvg"></div>
                                 <div class="interaction">
                                     <div id="buttons">
                                         <select id="combobox">
-                                           
+
                                         </select>
-                                       
+
                                         <button onclick="addPMessage()" type="button"
                                             class="btn btn-rounded btn-light btn-sm">Mudar processo</button>
 
@@ -100,7 +100,7 @@
                 </div>
             </div>
 
-            
+
         </section>
 
         <section class="stickyConfig">
@@ -113,22 +113,22 @@
                         <code>
                             Na inicialização:
                                 receivedi = {};
-                      
+
                             Para o processo P<sub>i</sub> enviar m com R-multicast para o grupo g
                                 B-multicast(g, m); // P<sub>i</sub> também recebe a mensagem
-                      
+
                             Em B-deliver(m) no processo Pj com g = group(m)
                                 se(m não pertence a Receivedj)
                                     Receivedj = Receivedj U {m};
                                     se(P<sub>j</sub> diff P<sub>i</sub>)
                                         B-multicast(g, m);
-                      
+
                                 R-deliver(m);
                         </code>
                     </pre>
                     <p>Este algoritmo tem como característica permitir aos processos pertencerem a vários grupos, simultaneamente. Observe que uma mesma mensagem m pode chegar mais de uma vez. Contudo, a partir do momento em que ela chegou, pelo menos uma vez, as duplicatas serão detectadas e não serão recebidas, satizfazendo a propriedade de integridade. Além disso, um processo correto entrega, para si mesmo, a mensagem m, o que permite satisfazer a propriedade de validade. A propriedade do acordo significa que, se um processo correto entrega a mensagem m, então todos os outros processos corretos em g entregarão m. Neste algoritmo, como todo processo correto envia a mensagem m por <i>B-multicast</i> após executar <i>B-deliver(m)</i>, o acordo é satisfeito.</p>
                     <p>Este algoritmo, no entanto, é ineficiente, pois cada processo envia |g| mensagens para cada processo em g, o que resulta em uma complexidade no envio de mensagens próximo de <b>O(n<sup>2</sup>)</b>.</p>
-                    <p>A simulção abaixo demonstra o funcionamento do algortimo de multicast confiável. 
+                    <p>A simulção abaixo demonstra o funcionamento do algortimo de multicast confiável.
                     <div class="marg">
                                     <!--Multicast confiavel-->
 
@@ -138,16 +138,16 @@
                                     <div id="buttonsR3">
                                         <button onclick="playAlg2()" type="button" class="btn btn-rounded btn-light btn-sm">Iniciar</button>
                                     </div>
-                                    
-                                    
+
+
                                 </div>
-                                
+
                                 <div class="alg" id="mcsvg"></div>
                                 <div class="interaction">
                                     <div id="buttonsMC">
                                         <select id="combobox2"></select>
-                                       
-                                        <button onclick="addPMessage2()" type="button" 
+
+                                        <button onclick="addPMessage2()" type="button"
                                             class="btn btn-rounded btn-light btn-sm">Mudar processo</button>
 
                                         <div class="sliderArea">

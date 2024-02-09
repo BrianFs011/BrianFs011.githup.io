@@ -10,7 +10,7 @@
     <meta name="keywords"  content="sistemas distribuídos, checkpointing, quase-síncrono, BCS, protocolos, algoritmos" />
     <meta name="Resource-type" content="Document" />
 
-    <link rel="stylesheet" type="text/css" href="css/fullpageStyle.css"/>       
+    <link rel="stylesheet" type="text/css" href="css/fullpageStyle.css"/>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
     <link rel="stylesheet" type="text/css" href="css/responsive.css"/>
     <link rel="stylesheet" type="text/css" href="css/bcs.css"/>
@@ -19,15 +19,15 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
 
 </head>
-<body> 
+<body>
     <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-angle-up icon"></i></button>
 
-    <div id="wraper">      
+    <div id="wraper">
 
         <section id="page-title">
             <div class="container">
                 <div class="page-title">
-                    <a href="../site.html" class="btn btn-outline btn-rounded btn-light">Home</a>
+                    <a href="../index.html" class="btn btn-outline btn-rounded btn-light">Home</a>
                     <a href="chkptalgs.html" class="btn btn-outline btn-rounded btn-light">Protocolos de checkpointing</a>
                     <a href="bcs.html" class="btn active btn-rounded btn-light">BCS</a>
                 </div>
@@ -43,21 +43,21 @@
                 </p>
 
                 <p>
-                    No BCS, os <button onmouseover="showProcessos()" onmouseout="unshowProcessos()" type="button" 
+                    No BCS, os <button onmouseover="showProcessos()" onmouseout="unshowProcessos()" type="button"
                     class="btn btn-light btn-xs">processos</button> são representados por <font color=#4b4b4b>
-                    P<sub>i</sub></font>, onde 0 &le; <font color=#4b4b4b>i</font> < <font color=#4b4b4b>n</font>, 
-                    sendo <font color=#4b4b4b>n</font> o número de processos. Cada processo possui seu 
-                    <button onmouseover="showRelogio()" onmouseout="unshowRelogio()" type="button" 
-                    class="btn btn-light btn-xs">relógio lógico</button>, e quando um processo 
-                    <font color=#4b4b4b>P<sub>i</sub></font> envia uma <button onmouseover="showMensagem()" 
-                    onmouseout="unshowMensagem()" type="button" class="btn btn-light btn-xs">mensagem</button> 
-                    <font color=#4b4b4b>m</font> para outro processo, também anexa na mensagem o valor de seu 
-                    relógio lógico. Abaixo temos um exemplo de como iremos representar o funcionamento do 
-                    algoritmo, usando uma linha do tempo para demonstrar a ordem dos eventos, e setas para 
-                    representar a direção do envio de mensagens. <button onmouseover="showCheckBasico()" 
-                    onmouseout="unshowCheckBasico()" type="button" class="btn btn-light btn-xs">Checkpoints 
-                    básicos</button> serão representados por quadrados preenchidos, enquanto 
-                    <button onmouseover="showCheckForcado()" onmouseout="unshowCheckForcado()" type="button" 
+                    P<sub>i</sub></font>, onde 0 &le; <font color=#4b4b4b>i</font> < <font color=#4b4b4b>n</font>,
+                    sendo <font color=#4b4b4b>n</font> o número de processos. Cada processo possui seu
+                    <button onmouseover="showRelogio()" onmouseout="unshowRelogio()" type="button"
+                    class="btn btn-light btn-xs">relógio lógico</button>, e quando um processo
+                    <font color=#4b4b4b>P<sub>i</sub></font> envia uma <button onmouseover="showMensagem()"
+                    onmouseout="unshowMensagem()" type="button" class="btn btn-light btn-xs">mensagem</button>
+                    <font color=#4b4b4b>m</font> para outro processo, também anexa na mensagem o valor de seu
+                    relógio lógico. Abaixo temos um exemplo de como iremos representar o funcionamento do
+                    algoritmo, usando uma linha do tempo para demonstrar a ordem dos eventos, e setas para
+                    representar a direção do envio de mensagens. <button onmouseover="showCheckBasico()"
+                    onmouseout="unshowCheckBasico()" type="button" class="btn btn-light btn-xs">Checkpoints
+                    básicos</button> serão representados por quadrados preenchidos, enquanto
+                    <button onmouseover="showCheckForcado()" onmouseout="unshowCheckForcado()" type="button"
                     class="btn btn-light btn-xs">checkpoints forçados</button>, por quadrados vazios.
                 </p>
                 <div id="svg_estatico"></div>
@@ -91,15 +91,15 @@
                                 que tem seu valor inicializado em zero.
                             </p>
                             <p> A cada checkpoint básico, o valor de <font color=#4b4b4b>lc</font>
-                                é incrementado em 1. 
+                                é incrementado em 1.
                             </p>
                             <p>Quando uma mensagem <font color=#4b4b4b>m</font> é enviada, o <font color=#4b4b4b>lc</font>
-                                do processo é enviado juntamente com ela, sendo 
+                                do processo é enviado juntamente com ela, sendo
                                 identificado por <font color=#4b4b4b>m.lc</font> no processo de destino.
                             </p>
-                            <p>Quando a mensagem é recebida, <font color=#4b4b4b>m.lc</font> é comparado com o <font color=#4b4b4b>lc</font> 
+                            <p>Quando a mensagem é recebida, <font color=#4b4b4b>m.lc</font> é comparado com o <font color=#4b4b4b>lc</font>
                                 do processo que a recebeu, e caso o valor de <font color=#4b4b4b>m.lc</font> seja maior, é feito um checkpoint
-                                forçado, onde o índice <font color=#4b4b4b>lc</font> 
+                                forçado, onde o índice <font color=#4b4b4b>lc</font>
                                 do processo atual passa a ser igual ao valor recebido. Após isso, o conteúdo da mensagem é executado.
                             </p>
                         </div>
@@ -107,7 +107,7 @@
                 </div>
 
                 <p><br>Veja você mesmo:</p>
-                
+
                 <div id="svg_dinamico"></div>
                 <p id="acoes"></p>
                 <div id="botoes">
@@ -119,7 +119,7 @@
         </section>
 
         <!-- Footer -->
-        <footer id="footer" class="footer-dark">            
+        <footer id="footer" class="footer-dark">
             <div class="copyright-content">
                 <div class="container">
                     <div class="copyright-text text-center">&copy; 2018 - Explorando Sistemas. Todos os direitos reservados. </div>
